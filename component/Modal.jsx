@@ -45,6 +45,9 @@ export default function Modal({ open, onClose }) {
                 type="number"
                 inputMode='numeric'
                 pattern='[0-9]'
+                onInput={(e) => {
+               e.target.value = e.target.value.replace(/[^0-9]/g, "");
+                }}
                 placeholder="e.g., 4"
                 onChange={(e) => setCapacity(e.target.value)}
                 className="border p-2 rounded-md"

@@ -33,7 +33,6 @@ export default function Modal({ open, onClose }) {
               type="text"
               placeholder="e.g., Patio 5"
               className="border p-2 rounded-md"
-              value={tableLabel}
               onChange={(e) => setTableLabel(e.target.value)}
             />
           </div>
@@ -45,7 +44,6 @@ export default function Modal({ open, onClose }) {
               <input
                 type="number"
                 placeholder="e.g., 4"
-                value={capacity}
                 onChange={(e) => setCapacity(e.target.value)}
                 className="border p-2 rounded-md"
               />
@@ -54,7 +52,6 @@ export default function Modal({ open, onClose }) {
             <div className="flex flex-col">
               <label className="text-sm font-medium">Section</label>
               <select 
-              value={section}
               onChange={(e) => setSection(e.target.value)}
               className="border p-2 rounded-md">
                 <option value="">Select a section</option>

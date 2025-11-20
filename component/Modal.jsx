@@ -4,8 +4,40 @@ export default function Modal({ open, onClose }) {
   const [tableLabel, setTableLabel] = useState("");
   const [capacity, setCapacity] = useState("");
   const [section, setSection] = useState("");
+
+    useEffect(() => {
+    if (open) {
+      console.log("Previous values:", { tableLabel, capacity, section });
+      setTableLabel("");
+      setCapacity("");
+      setSection("");
+    }
+  }, [open]);
   
   if (!open) return null;
+
+   const validateForm = () => {
+    if (!tableLabel.trim()) {
+      alert("Table Label is required");
+      return false;
+    }
+    if (!capacity || isNaN(capacity) || capacity <= 0) {
+      alert("Capacity must be a valid number");
+      return false;
+    }
+    if (!section) {
+      alert("Please select a section");
+      return false;
+    }
+    return true;
+  };
+
+   const handleSave = () => {
+    if (!validateForm()) return;
+
+    onSave({ tableLabel, capacity, section });
+    onClose();
+  };
 
 
   return (
@@ -31,6 +63,7 @@ export default function Modal({ open, onClose }) {
             <label className="text-sm font-medium">Table Label</label>
             <input
               type="text"
+              value={tableLabel}
               placeholder="e.g., Patio 5"
               className="border p-2 rounded-md"
               onChange={(e) => setTableLabel(e.target.value)}
@@ -42,9 +75,9 @@ export default function Modal({ open, onClose }) {
             <div className="flex flex-col">
               <label className="text-sm font-medium">Capacity</label>
               <input
-                type="number"
-                inputMode='numeric'
-                pattern='[0-9]'
+                type="text"
+                value={capacity}
+                inputMode="numeric"
                 onInput={(e) => {
                e.target.value = e.target.value.replace(/[^0-9]/g, "");
                 }}
@@ -57,6 +90,7 @@ export default function Modal({ open, onClose }) {
             <div className="flex flex-col">
               <label className="text-sm font-medium">Section</label>
               <select 
+               value={section}
               onChange={(e) => setSection(e.target.value)}
               className="border p-2 rounded-md">
                 <option value="">Select a section</option>
@@ -77,7 +111,7 @@ export default function Modal({ open, onClose }) {
             </button>
 
             <button 
-             onClick={onClose}
+              onClick={handleSave}
             className="px-5 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600">
               Save
             </button>

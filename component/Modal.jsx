@@ -43,6 +43,7 @@ export default function Modal({ open, onClose }) {
               <label className="text-sm font-medium">Capacity</label>
               <input
                 type="number"
+                inputMode='numeric'
                 placeholder="e.g., 4"
                 onChange={(e) => setCapacity(e.target.value)}
                 className="border p-2 rounded-md"

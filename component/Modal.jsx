@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-export default function Modal({ open, onClose }) {
+export default function Modal({ open, onClose, onSave }) {
   const [tableLabel, setTableLabel] = useState("");
   const [capacity, setCapacity] = useState("");
   const [section, setSection] = useState("");

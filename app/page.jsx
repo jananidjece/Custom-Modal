@@ -5,6 +5,11 @@ import Modal from "../component/Modal";
 export default function Home() {
   const [open, setOpen] = useState(false);
 
+  const handleSave = (data) => {
+console.log("Saved Data:", data);
+setOpen(false);
+};
+
   return (
     <div className="p-10">
       <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
@@ -16,7 +21,7 @@ export default function Home() {
         Add New Table
       </button>
 
-      <Modal open={open} onClose={() => setOpen(false)} />
+      <Modal open={open} onClose={() => setOpen(false)} onSave={handleSave} />
     </div>
   );
 }
